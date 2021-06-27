@@ -4,6 +4,8 @@ This is demo project for article [Integrating Amazon Cognito with Ethereum Block
 
 ![Demo](https://github.com/yai333/AWSandBlochainAuthFlow/blob/master/demo.gif?raw=true)
 
+![diagram](https://github.com/yai333/AWSandBlochainAuthFlow/blob/master/sequencediagram.jpg?raw=true)
+
 ## Getting started
 There are 2 directories in this project: frontend and server.
 
