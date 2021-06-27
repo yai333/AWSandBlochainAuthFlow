@@ -1,6 +1,6 @@
 # Integrating Amazon Cognito with Ethereum Blockchain
 
-Demo project for article [Integrating Amazon Cognito with Ethereum Blockchain](https://yia333.medium.com/integrating-amazon-cognito-with-ethereum-blockchain-7e87f1425422)
+This is demo project for article [Integrating Amazon Cognito with Ethereum Blockchain](https://yia333.medium.com/integrating-amazon-cognito-with-ethereum-blockchain-7e87f1425422)
 
 ![Demo](https://github.com/yai333/AWSandBlochainAuthFlow/blob/master/demo.gif?raw=true)
 
