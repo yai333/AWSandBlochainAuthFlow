@@ -1,0 +1,41 @@
+Login:
+  handler: src/login/index.handler
+  events:
+    - http:
+        path: login
+        method: post
+        cors: true
+        # request:
+        #   parameters:
+        #     paths:
+        #       client_id: true
+          # schema:
+          #   application/json: ${file(resources/login_request.json)}
+
+GetNonce:
+  handler: src/get_nonce/index.handler
+  events:
+    - http:
+        path: nonce
+        method: get
+        cors: true
+        request:
+          parameters:
+            querystrings:
+              address: true
+Signup:
+  handler: src/signup/index.handler
+  events:
+    - http:
+        path: signup
+        method: post
+        cors: true
+
+Hello:
+  handler: src/hello/index.handler
+  events:
+    - http:
+        path: hello
+        method: get
+        cors: true
+        authorizer: aws_iam

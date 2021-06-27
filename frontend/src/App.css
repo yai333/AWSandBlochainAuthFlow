@@ -1,0 +1,349 @@
+.app-container{
+  
+}
+
+.login-container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: calc(100vh - 70px);
+  background-color: #fff;
+  padding-left: 5%;
+  padding-right: 5%;
+  margin-top: 70px;
+}
+
+.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  height: 60%;
+  width: 40%;
+  background: #f2f2f2;
+}
+
+/* Add some padding inside the card container */
+.login-container .container {
+  padding-left: 7%;
+  padding-right: 7%;
+  height: 100%;
+}
+
+.login-container .container h1{
+  font-size: 2.5rem;
+}
+
+.login-container .container form{
+  display: flex;
+  height: 80%;
+  flex-direction: column;
+  justify-content: space-around;
+  align-self: center;
+}
+
+ 
+label{
+  display: flex;
+  flex-direction: column;
+}
+
+.login-container button{
+  height: 40px;
+  font-weight: bold;
+  font-size: 15px;
+  background-color: #52ab98;
+  border: 0;
+  color:#fff;
+}
+
+.login-container button:hover{
+  background-color:#2b6777;
+  cursor: pointer;
+}
+
+
+.login-container button:focus{
+  outline: none !important;
+}
+
+.spinner {
+  animation: spinner infinite .9s linear;
+  height: 90%;
+}
+
+.spinner:focus{
+  border:none;
+}
+
+
+@keyframes spinner {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.form-error{
+  color: #ff6600;
+  text-align: center;
+}
+
+@media screen and (max-width: 700px){
+  .login-container{
+    justify-content: center;
+    background-image: none;
+  }
+  .card {
+    width: 80%;
+    align-self: center;
+  }
+  
+}
+
+@media screen and (max-width: 350px){
+  .card {
+    width: 100%;
+  }
+  
+}
+
+#navigation{
+  width: 100%;
+  position: fixed;
+  z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  background-color: #2b6777;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  height: 70px;
+  top: 0;
+  padding-right: 5px;
+  padding-left: 5px;
+}
+
+
+#navigation h1{
+  color: #f2f2f2;
+  padding-left:10px;
+  padding-right:10px;
+}
+
+#navigation button{
+  background-color: transparent;
+  border: none;
+  align-self: center;
+}
+
+#navigation button:hover{
+  cursor: pointer;
+}
+
+#navigation button:focus{
+  outline: none !important;
+}
+
+.home {
+  display: flex;
+  width:100%;
+  justify-content: center;
+  align-items: center;
+  vertical-align: middle;
+  height: 100vh;
+}
+
+.home .loader{
+  align-self: center;
+  width: 100%;
+  text-align: center;
+}
+
+.home .error{
+  width: 100%;
+  align-self: center;
+  color: #F42B4B;
+  font-size: 30px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.home>.card {
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  transition: 0.3s;
+  height: 400px;
+  width: 30%;
+  position: relative;
+  margin-bottom: 2%;
+}
+
+.home .card>img{
+  width: 100%;
+  height: 100%;
+}
+
+
+.home .content{
+  background-color: rgba(255, 255, 255, 0.7);
+  width: 100%;
+  text-align: center;
+}
+
+.content>h2{
+  text-align: center;
+  font-size: 2rem;
+}
+
+@media screen and (max-width: 780px){
+
+  .home{
+    justify-content: space-around;
+  }
+  .home .card {
+    width: 45%;
+  }
+}
+
+@media screen and (max-width: 500px){
+  .home .card {
+    width: 90%;
+  }
+}
+
+@media screen and (min-width: 1400px){
+  .home {
+    margin: auto;
+    width: 1400px;
+  }
+  .toggle-button{
+    margin-bottom: 10px;
+  }
+}
+
+
+.modal {
+  background: rgba(0,0,0,0.1);
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  opacity: 1;
+  visibility: visible;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.modal.off {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.modal-table-container {
+  display: table;
+  height: 100%;
+  width: 100%;
+
+}
+.modal-table-cell {
+  display: table-cell;
+  vertical-align: middle;
+}
+.modal-overlay {
+  width: 100%;
+  background: #fff;
+  margin: 0 auto;
+  box-shadow: 0 1px 10px #aaa;
+  border-radius: 4px;
+  padding: 35px 30px 20px 30px;
+}
+.modal-overlay.small {
+  max-width: 450px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  max-height: calc(100vh - 10px);
+  overflow: hidden;
+}
+
+.modal-header {
+  margin-bottom: 30px;
+}
+.modal-title {
+  font-size: 20px;
+}
+
+div.modal-form-inputs {
+  max-height: calc(100vh - 210px);
+  overflow-y: scroll;
+  overflow: auto;
+  margin-top: -10px;
+}
+
+div.modal-form-inputs input[type="text"] {
+  height: auto;
+  padding: 5px;
+  width: 95%;
+}
+
+div.modal-form-inputs label {
+  margin-top: 5px;
+  font-weight: lighter;
+}
+
+.button {
+  display: inline-block;
+  font-family: "Open Sans Semibold", sans-serif;
+  white-space: nowrap;
+  padding: 7px 10px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  outline: none;
+  outline: 0;
+  border-radius: 4px;
+  transition: background 0.4s ease;
+  font-size: 14px;
+}
+
+
+.button-default {
+  background: transparent;
+  border-color: #ddd;
+  color: #666666;
+}
+.button-default:hover {
+  border-color: #ccc;
+  color: #333;
+}
+.button-primary {
+  background: #0192dd;
+  color: #fff;
+}
+.button-primary:hover {
+  background: #1e82b9;
+}
+
+.button:disabled {
+  color: white;
+  border-color: gray;
+  background-color: gray;
+}
+
+.form-action {
+  padding-top: 20px;
+}
+.form-action .button:nth-child(2) {
+  margin-right: 10px;
+  font-family: "Open Sans", sans-serif;
+}
+
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  clear: both;
+}
+
+.pull-right {
+  float: right !important;
+}

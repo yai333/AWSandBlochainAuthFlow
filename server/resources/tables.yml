@@ -1,0 +1,17 @@
+UserTable:
+  Type: AWS::DynamoDB::Table
+  Properties:
+    TableName: ${self:custom.userTable}
+    SSESpecification:
+      SSEEnabled: true
+    AttributeDefinitions:
+      - AttributeName: address
+        AttributeType: S
+    KeySchema:
+      - AttributeName: address
+        KeyType: HASH
+    ProvisionedThroughput:
+      ReadCapacityUnits: ${self:custom.tableThroughputs.${self:provider.stage}}
+      WriteCapacityUnits: ${self:custom.tableThroughputs.${self:provider.stage}}
+    StreamSpecification:
+      StreamViewType: NEW_AND_OLD_IMAGES

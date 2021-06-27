@@ -1,0 +1,83 @@
+CognitoIdentityPool:
+  Type: AWS::Cognito::IdentityPool
+  Properties:
+    AllowUnauthenticatedIdentities: false
+    IdentityPoolName: "${self:service.name}IdentityPool"
+    DeveloperProviderName: "${self:custom.customProviderName}"
+
+CognitoAuthorizedRole:
+  Type: "AWS::IAM::Role"
+  Properties:
+    AssumeRolePolicyDocument: 
+      Version: "2012-10-17"
+      Statement:
+        - Effect: "Allow"
+          Principal: 
+            Federated: "cognito-identity.amazonaws.com"
+          Action: 
+            - "sts:AssumeRoleWithWebIdentity"
+          Condition:
+            StringEquals: 
+              "cognito-identity.amazonaws.com:aud":
+                { Ref: CognitoIdentityPool }
+            "ForAnyValue:StringLike":
+              "cognito-identity.amazonaws.com:amr": authenticated 
+        - Effect: "Allow"
+          Principal: 
+            Service: "apigateway.amazonaws.com"
+          Action: 
+            - "sts:AssumeRole"      
+    Policies:
+      - PolicyName: "CognitoAuthorizedPolicy"
+        PolicyDocument: 
+          Version: "2012-10-17"
+          Statement: 
+            - Effect: "Allow"
+              Action:
+                - "cognito-identity:*"
+              Resource: "*"
+            - Effect: "Allow"
+              Action:
+                - "lambda:InvokeFunction"
+              Resource: "*"
+            - Effect: "Allow"
+              Action:
+                - "execute-api:Invoke"
+              Resource: 
+                "Fn::Sub": "arn:aws:execute-api:#{AWS::Region}:#{AWS::AccountId}:*/*/GET/hello"
+
+CognitoUnAuthorizedRole:
+    Type: AWS::IAM::Role
+    Properties:
+      MaxSessionDuration: 43200
+      AssumeRolePolicyDocument:
+        Version: "2012-10-17"
+        Statement:
+          - Effect: Allow
+            Principal:
+              Federated: cognito-identity.amazonaws.com
+            Action: sts:AssumeRoleWithWebIdentity
+            Condition:
+              ForAnyValue:StringLike:
+                "cognito-identity.amazonaws.com:amr": "unauthenticated"
+      Policies:
+        - PolicyName: "CognitoUnAuthorizedPolicy"
+          PolicyDocument: 
+            Version: "2012-10-17"
+            Statement: 
+              - Effect: "Deny"
+                Action:
+                  - "cognito-identity:*"
+                Resource: "*"
+              - Effect: "Deny"
+                Action:
+                  - "lambda:InvokeFunction"
+                Resource: "*"
+
+CognitoIdentityPoolRolesMapping:
+  Type: AWS::Cognito::IdentityPoolRoleAttachment
+  Properties:
+    IdentityPoolId: { Ref: CognitoIdentityPool }
+    Roles:
+      authenticated: { Fn::GetAtt: [CognitoAuthorizedRole, Arn] }
+      unauthenticated: { Fn::GetAtt: [CognitoUnAuthorizedRole, Arn] }
